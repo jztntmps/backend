@@ -23,7 +23,7 @@ public class ChatController {
         String userMessage = request.get("message");
 
         Map<String, Object> body = Map.of(
-                "model", "phi3:latest",
+                "model", "llama3.2:1b",
                 "prompt", userMessage,
                 "stream", false,
                 "options", Map.of(
