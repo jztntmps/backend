@@ -1,9 +1,10 @@
 spring:
   application:
     name: chatbot
-  data:
-    mongodb:
-      uri: mongodb://localhost:27017/chatbotdb
+
+  mongodb:
+    uri: mongodb://localhost:27017/chatbotdb
+
 logging:
   level:
     org.springframework.data.mongodb.core.MongoTemplate: DEBUG
