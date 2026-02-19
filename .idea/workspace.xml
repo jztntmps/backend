@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cef8dccd-f28f-41ab-b19d-54dcfa729b61" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chatbot/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/chatbot/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatbot/src/main/java/com/example/chatbot/controller/ConversationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/chatbot/src/main/java/com/example/chatbot/controller/ConversationController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +56,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "Spring Boot.ChatbotApplication.executor": "Run",
-    "git-widget-placeholder": "Harold",
+    "git-widget-placeholder": "Merging Harold",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -132,7 +134,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1771382266091</updated>
-      <workItem from="1771404885797" duration="15286000" />
+      <workItem from="1771404885797" duration="16081000" />
     </task>
     <servers />
   </component>
