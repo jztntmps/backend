@@ -37,12 +37,13 @@ public class ConversationController {
         c.setUserId(req.userId);
         c.setStatus("open");
         c.setArchivedAt(null);
+        c.setCreatedAt(Instant.now()); // ✅ optional but recommended
 
         // title = first user message (trim + short)
         String first = (req.firstUserMessage == null) ? "" : req.firstUserMessage.trim();
         c.setTitle(first.length() > 60 ? first.substring(0, 60) : first);
 
-        // first chat turn
+        // ✅ first chat turn (use request fields consistently)
         c.getTurns().add(new Conversation.ChatTurn(first, req.firstBotResponse));
 
         return convoRepo.save(c);
@@ -50,7 +51,10 @@ public class ConversationController {
 
     // ✅ Add another turn to existing conversation
     @PostMapping("/{conversationId}/turns")
-    public Conversation addTurn(@PathVariable String conversationId, @RequestBody AddTurnRequest req) {
+    public Conversation addTurn(
+            @PathVariable("conversationId") String conversationId,
+            @RequestBody AddTurnRequest req
+    ) {
         Conversation c = convoRepo.findById(conversationId)
                 .orElseThrow(() -> new RuntimeException("Conversation not found"));
 
@@ -60,20 +64,20 @@ public class ConversationController {
 
     // ✅ Get a conversation
     @GetMapping("/{conversationId}")
-    public Conversation getOne(@PathVariable String conversationId) {
+    public Conversation getOne(@PathVariable("conversationId") String conversationId) {
         return convoRepo.findById(conversationId)
                 .orElseThrow(() -> new RuntimeException("Conversation not found"));
     }
 
     // ✅ List conversations by userId (for sidebar/history)
     @GetMapping("/by-user/{userId}")
-    public List<Conversation> getByUser(@PathVariable String userId) {
+    public List<Conversation> getByUser(@PathVariable("userId") String userId) {
         return convoRepo.findByUserIdOrderByCreatedAtDesc(userId);
     }
 
     // ✅ End/Archive conversation
     @PatchMapping("/{conversationId}/end")
-    public Conversation end(@PathVariable String conversationId) {
+    public Conversation end(@PathVariable("conversationId") String conversationId) {
         Conversation c = convoRepo.findById(conversationId)
                 .orElseThrow(() -> new RuntimeException("Conversation not found"));
         c.setStatus("ended");
