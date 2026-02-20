@@ -15,19 +15,17 @@ public class Conversation {
     private String conversationId;
 
     private String userId;
-    private String title;     // first user message (auto)
-    private String status;    // "open" or "ended"
+    private String title;
+    private String status; // "open" or "ended"
 
-    private List<ChatTurn> turns = new ArrayList<>(); // ✅ array of messages
+    private boolean archived = false;
+
+    private List<ChatTurn> turns = new ArrayList<>();
 
     @CreatedDate
-    private Instant createdAt;
-
-    private Instant archivedAt;
+    private Instant createdAt = Instant.now();
 
     public Conversation() {}
-
-    // getters/setters...
 
     public String getConversationId() { return conversationId; }
     public void setConversationId(String conversationId) { this.conversationId = conversationId; }
@@ -41,26 +39,28 @@ public class Conversation {
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
 
+    public boolean isArchived() { return archived; }
+    public void setArchived(boolean archived) { this.archived = archived; }
+
     public List<ChatTurn> getTurns() { return turns; }
     public void setTurns(List<ChatTurn> turns) { this.turns = turns; }
 
     public Instant getCreatedAt() { return createdAt; }
     public void setCreatedAt(Instant createdAt) { this.createdAt = createdAt; }
 
-    public Instant getArchivedAt() { return archivedAt; }
-    public void setArchivedAt(Instant archivedAt) { this.archivedAt = archivedAt; }
-
-    // ✅ embedded object
     public static class ChatTurn {
         private String userMessage;
         private String botResponse;
-        private Instant createdAt = Instant.now();
+        private Instant createdAt;
 
-        public ChatTurn() {}
+        public ChatTurn() {
+            this.createdAt = Instant.now();
+        }
 
         public ChatTurn(String userMessage, String botResponse) {
             this.userMessage = userMessage;
             this.botResponse = botResponse;
+            this.createdAt = Instant.now();
         }
 
         public String getUserMessage() { return userMessage; }
@@ -73,5 +73,3 @@ public class Conversation {
         public void setCreatedAt(Instant createdAt) { this.createdAt = createdAt; }
     }
 }
-
-
