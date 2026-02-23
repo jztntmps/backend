@@ -3,7 +3,6 @@ package com.example.chatbot.controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClient;
-
 import java.util.Map;
 
 @RestController
@@ -14,7 +13,9 @@ public class ChatController {
 
     @PostMapping
     public Map<String, String> chat(@RequestBody Map<String, String> request) {
+
         String userMessage = request.getOrDefault("message", "").trim();
+
         if (userMessage.isEmpty()) {
             return Map.of("reply", "Please type a message.");
         }
@@ -30,6 +31,7 @@ public class ChatController {
         );
 
         try {
+
             Map response = restClient.post()
                     .uri("/api/generate")
                     .body(body)
@@ -37,17 +39,23 @@ public class ChatController {
                     .body(Map.class);
 
             String reply = response != null ? (String) response.get("response") : null;
+
             if (reply == null || reply.trim().isEmpty()) {
                 reply = "(No reply from model)";
             }
+
             return Map.of("reply", reply.trim());
 
         } catch (ResourceAccessException ex) {
+
             // ✅ Ollama unreachable/offline -> NO 500, just return a friendly reply
-            return Map.of("reply",
+            return Map.of(
+                    "reply",
                     "⚠️ AI server is offline. Please start Ollama (ollama serve) then try again."
             );
+
         } catch (Exception ex) {
+
             return Map.of("reply", "⚠️ Server error while generating response.");
         }
     }
