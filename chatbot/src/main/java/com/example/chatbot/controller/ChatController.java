@@ -14,11 +14,14 @@ import java.util.*;
 @CrossOrigin(origins = "http://localhost:4200")
 public class ChatController {
 
-    private final RestClient restClient = RestClient.create("http://localhost:11434");
+    private final RestClient restClient;
     private final ConversationRepository convoRepo;
     private final UserRepository userRepo;
 
-    public ChatController(ConversationRepository convoRepo, UserRepository userRepo) {
+    public ChatController(RestClient restClient,
+                          ConversationRepository convoRepo,
+                          UserRepository userRepo) {
+        this.restClient = restClient;
         this.convoRepo = convoRepo;
         this.userRepo = userRepo;
     }
