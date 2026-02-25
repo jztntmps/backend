@@ -1,4 +1,4 @@
 package com.example.chatbot.model;
 
-public class ConversationTests {
+public class ConversationTest {
 }

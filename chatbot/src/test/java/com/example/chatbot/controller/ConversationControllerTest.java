@@ -1,4 +1,4 @@
 package com.example.chatbot.controller;
 
-public class ChatControllerTests {
+public class ConversationControllerTest {
 }
